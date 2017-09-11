@@ -65,4 +65,4 @@ There's a lot going on here and this document probably doesn't detail it as well
 
 ----
 
-All code in the utils folder (except ```tft_unity.c```) was provided by Bruce Land for ECE 4760 and belongs to its respective author. All other code belongs to Nikita Ermoshkin and Eric Dai, and is free for anyone to use (just tell the world we saved you a headache).
+All code in the utils folder (except ```tft_unity.c```) was provided by Bruce Land for ECE 4760 and belongs to its respective author. All other code belongs to Nikita Ermoshkin and Eric Dai, and is free for anyone to use (just tell the world we saved you a headache, buy us a beer at CTB or something).
