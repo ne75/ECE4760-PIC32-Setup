@@ -11,29 +11,32 @@ Here's what we assume you already have:
 1. Basic understanding of Makefiles
 1. Basic understanding of Bash
 1. You've succefully compiled and loaded from your computer (See below for a note on making PLIB work if that's what's giving you trouble)
+1. Make installed. On Mac this requires installing XCode and then installing Command Line Tools (search the internet for this process, it's been documented a thousand times)
 
 # PLIB Setup
 If you've already gotten PLIB properly set up, skip this section
 
 There are two issues when trying to install PLIB on Mac (we haven't verified that this works on Linux, but if you are using Linux, we trust you'll figure it out):
 
-First, it defaults to installing into it's version directory (v1.40), while it needs to be installed into the same directory as XC32 (currently, that's v1.44). So, when running the PLIB installer, make sure to check the installation directory and make sure it's where XC32 was installed
+First, it defaults to installing into it's version directory (v1.40), while it needs to be installed into the same directory as XC32 (currently, that's v1.44). So, when running the PLIB installer, make sure to check the installation directory and make sure it's where XC32 was installed.
 
-Second, the installer doesn't work on the lastest version of macOS. So the easiest way to get it is to have a friendly neighbor with OS X install XC32 and PLIB on their computer and copy that entire folder over to your computer (it's about 4GB, so we won't upload it here). 
+Second, the installer doesn't work on the lastest version of macOS. We currently don't have a fix for this (Nikita is still on OS X and didn't run into this problem, Eric on macOS did). The easiest way to get it is to have a friendly neighbor with OS X install XC32 and PLIB on their computer and copy that entire folder over to your computer (it's about 4GB, so we won't upload it here). 
 
 # Basic Setup
 
-There are two important files/folders in this repo: ```utils/``` and ```ipecmd.sh```. Place these wherever you like on your system, but remember the path. ```ipecmd.sh``` is a script to make loading from any directory (not just within the same directory as the loading program) possible. ```utils/``` is a folder containing the classes TFT code, protothreads code, and in the future, other class-wide libraries. You don't need ```utils/``` if you plan to put the TFT and protothreads files within every one of your projects, we just did this to make everything cleaner. 
+There are two important files/folders in this repo: ```utils/``` and ```ipecmd.sh```. Place these wherever you like on your system, but remember the path. ```ipecmd.sh``` is a script to make loading from any directory (not just within the same directory as the loading program, see Nitty Gritty Details below if you care for an explanation) possible. ```utils/``` is a folder containing the class's TFT code, protothreads code, and in the future, other class-wide libraries. You don't need ```utils/``` if you plan to put the TFT and protothreads files within every one of your projects, we just did this to make everything cleaner. 
 
 Open up ```ipecmd.sh``` and make sure to edit the path to the ipecmd.jar directory towards the bottom. If you installed on Mac using the default settings, this shouldn't need to change. 
 
 ## Example: ```blink_led```
 
-We've provided the prototypical blinking LED exmaple, using our system. Edit the Makefile to reflect the proper locations of the XC32 compiler binaries and the location of the ```ipecmd.sh``` script. Run ```make``` and it should compile and load without problems
+We've provided the prototypical blinking LED exmaple, using our system. Edit the Makefile to reflect the proper locations of the XC32 compiler binaries and the location of the ```ipecmd.sh``` script. Run ```make``` and it should compile and load without problems.
+
+From here, you should be able to build your own projects. You'll have to edit the Makefile for any C files you add, such as the tft files, if you don't use our utils system, described below. 
 
 # ```utils```
 
-Since we will be compiling basically every lab with the protothreads and TFT code, we decided to put it into it's own library. We added a file, ```tft_unity.c``` to make the Makefile cleaner (instead of compiling each C file individually, you can just compile this one and it will compile all of them). The Makefile in the root of this repo shows an example of this compilation and how it gets linked into the .elf program
+Since we will be compiling basically every lab with the protothreads and TFT code, we decided to put it into it's own library. We added a file, ```tft_unity.c``` to make the Makefile cleaner. Instead of compiling each C file individually, you can just compile this one and it will compile all of them. The Makefile in the root of this repo shows an example of this compilation and how it gets linked into the .elf program
 
 # The Nitty Gritty Details
 
@@ -41,7 +44,7 @@ If you are still reading this, then you are probably insane and want to know how
 
 ## The Compilation Process
 
-Like any C program, every C file gets compiled into an object file (.o) and then those get linked together into a binary (.elf). You can read the Makefile to see all the flags necessary for compilation. The most important flag is ```-mprocessor=32MX250F128B```. This is what actually tells the compiler which processor to compile to. As of writing, ECE 4760 uses the PIC32MX250F128B. 
+Like any C program, every C file gets compiled into an object file (.o) and then those get linked together into a binary (.elf). You can read the Makefile to see all the flags necessary for compilation. The most important flag is ```-mprocessor=32MX250F128B```. This is what actually tells the compiler which processor to compile to. As of writing, ECE 4760 uses the PIC32MX250F128B. We haven't played with the other flags to see what they do or if they are necessary, but 
 
 One last step necessary is to convert the .elf format into the .hex format. This is what actually gets loaded onto the chip, byte by byte. 
 
@@ -59,3 +62,7 @@ There's a lot going on here and this document probably doesn't detail it as well
 
 -Nikita Ermoshkin (ne75)
 -Eric Dai (emd88)
+
+----
+
+All code in the utils folder (except ```tft_unity.c```) was provided by Bruce Land for ECE 4760 and belongs to its respective author. All other code belongs to Nikita Ermoshkin and Eric Dai, and is free for anyone to use (just tell the world we saved you a headache).
