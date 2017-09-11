@@ -1,4 +1,10 @@
-// This is a unity build file for the TFT library
+/* 
+ * Nikita Ermoshkin (ne75)
+ * Eric Dai (emd88)
+ *
+ * September 2017
+ *
+ */
 
 #include "glcdfont.c"
 #include "tft_gfx.c"

@@ -1,8 +1,14 @@
-#include <stdint.h>         /* For uint32_t definition                        */
-#include <stdbool.h>        /* For true/false definition                      */
+/* 
+ * Nikita Ermoshkin (ne75)
+ * Eric Dai (emd88)
+ *
+ * September 2017
+ *
+ */
 
-#define _SUPPRESS_PLIB_WARNING 1
-#include <plib.h>            /* Include to use PIC32 peripheral libraries     */
+#include <stdint.h>
+#include <stdbool.h>       
+#include <plib.h> 
 
 // Clock Configuration
 #pragma config FNOSC = FRCPLL, POSCMOD = OFF
@@ -13,18 +19,21 @@
 #define SYS_FREQ     40000000
 #define FCY          SYS_FREQ
 
+/*
+ * Delay function taken from http://www.microchip.com/forums/m523604.aspx
+ *
+ */
 void delay_ms(unsigned int msec) {
 	unsigned int tWait, tStart;
 		
     tWait=(SYS_FREQ/2000)*msec;
     tStart=ReadCoreTimer();
-    while((ReadCoreTimer()-tStart)<tWait);		// wait for the time to pass
+    while((ReadCoreTimer()-tStart)<tWait);
 
 }
 
 int32_t main(void) {
 
-    /* TODO Add user clock/system configuration code if appropriate.  */
     SYSTEMConfig(SYS_FREQ, SYS_CFG_ALL); 
     INTConfigureSystem(INT_SYSTEM_CONFIG_MULT_VECTOR);
    
@@ -33,6 +42,6 @@ int32_t main(void) {
     while(1)
     {
         mPORTAToggleBits(BIT_0);
-        delay_ms(100);
+        delay_ms(1000);
     }
 }
