@@ -18,8 +18,7 @@ for arg in "$@"; do
 	fi
 done
 
-echo $args
-
+## Edit this path to match your system 
 cd /Applications/microchip/mplabx/v4.00/mplab_ipe.app/Contents/Java
 java -jar ipecmd.jar $args
 
