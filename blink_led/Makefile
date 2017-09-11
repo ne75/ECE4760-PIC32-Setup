@@ -11,7 +11,7 @@ TARGET = blink_led
 PROCESSOR = 32MX250F128B
 LOADTOOL = PKOB
 
-CFLAGS = -g -x c -c -mprocessor=$(PROCESSOR) -no-legacy-libc
+CFLAGS = -g -x c -c -mprocessor=$(PROCESSOR) -no-legacy-libc -D_SUPPRESS_PLIB_WARNING=1 -D_DISABLE_OPENADC10_CONFIGPORT_WARNING
 LFLAGS = -no-legacy-libc -mprocessor=$(PROCESSOR)
 LOADFLAGS = -TP$(LOADTOOL) -P$(PROCESSOR) -OL -M 
 
