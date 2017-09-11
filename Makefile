@@ -6,7 +6,7 @@
 #
 
 XC32 = /Applications/microchip/xc32/v1.44/bin
-LOADER = /Users/Nikita/Github/ECE4760/ipecmd.sh
+LOADER = ./ipecmd.sh
 
 CC = $(XC32)/xc32-gcc
 BIN2HEX = $(XC32)/xc32-bin2hex
