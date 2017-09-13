@@ -17,11 +17,11 @@ TARGET = capacitance_meter
 PROCESSOR = 32MX250F128B
 LOADTOOL = PKOB
 
-INCLUDES = -I../utils/ -I../utils/protothreads/ -I../utils/tft/
-
 UTILS_DIR = ../utils
 TFT_DIR = $(UTILS_DIR)/tft
 PT_DIR = $(UTILS_DIR)/protothreads
+
+INCLUDES = -I$(UTILS_DIR) -I$(PT_DIR) -I$(TFT_DIR)
 
 CFLAGS = -g -x c -c -mprocessor=$(PROCESSOR) -no-legacy-libc -D_SUPPRESS_PLIB_WARNING=1 -D_DISABLE_OPENADC10_CONFIGPORT_WARNING
 LFLAGS = -no-legacy-libc -mprocessor=$(PROCESSOR)
