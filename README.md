@@ -2,7 +2,7 @@
 A simple build environment for PIC32MX, targeted for students in ECE 4760 at Cornell University
 
 
-# Introdcution
+# Introduction
 This mini-project exists for two reasons: we wanted to understand how the loading subsystem of the PIC32 worked and we were frustrated with MPLABX, as it's bulky and unnecessary. We believe that the best way to learn a new system is to understand what happens behind the scenes, so this should be a sneak peak at that.
 
 # Requirements 
