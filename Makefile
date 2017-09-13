@@ -29,7 +29,7 @@ LOADFLAGS = -TP$(LOADTOOL) -P$(PROCESSOR) -OL -M
 
 .PHONY: all setup load clean
 
-all: setup $(OBJDIR)/$(TARGET).hex load
+all: setup $(OBJDIR)/$(TARGET).hex load clean-output
 
 setup:
 	mkdir -p $(OBJDIR)
@@ -48,5 +48,9 @@ $(OBJDIR)/tft.o: $(TFT_DIR)/tft_unity.c
 
 load: $(OBJDIR)/$(TARGET).hex
 	$(LOADER) $(LOADFLAGS) -F$<
+
+clean-output:
+	rm *.xml && rm log.*
+
 clean:
 	rm -rf $(OBJDIR)/*
