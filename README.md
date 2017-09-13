@@ -2,7 +2,7 @@
 A simple build environment for PIC32MX, targeted for students in ECE 4760 at Cornell University
 
 
-# Introdcution
+# Introduction
 This mini-project exists for two reasons: we wanted to understand how the loading subsystem of the PIC32 worked and we were frustrated with MPLABX, as it's bulky and unnecessary. We believe that the best way to learn a new system is to understand what happens behind the scenes, so this should be a sneak peak at that.
 
 # Requirements 
@@ -12,6 +12,7 @@ Here's what we assume you already have:
 1. Basic understanding of Bash
 1. You've succefully compiled and loaded from your computer (See below for a note on making PLIB work if that's what's giving you trouble)
 1. Make installed. On Mac this requires installing XCode and then installing Command Line Tools (search the internet for this process, it's been documented a thousand times)
+1. Download https://cornell.box.com/s/8aqitoj0c5vtj689i8u1i5aqp8c3wa6m and unzip in the home (`~`) directory
 
 # PLIB Setup
 If you've already gotten PLIB properly set up, skip this section

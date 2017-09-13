@@ -6,7 +6,7 @@
 #
 
 XC32 = /Applications/microchip/xc32/v1.44/bin
-LOADER = /Users/Nikita/Github/ECE4760/ipecmd.sh
+LOADER = ./ipecmd.sh
 
 CC = $(XC32)/xc32-gcc
 BIN2HEX = $(XC32)/xc32-bin2hex
@@ -17,11 +17,11 @@ TARGET = capacitance_meter
 PROCESSOR = 32MX250F128B
 LOADTOOL = PKOB
 
-INCLUDES = -I../utils/ -I../utils/protothreads/ -I../utils/tft/
-
 UTILS_DIR = ../utils
 TFT_DIR = $(UTILS_DIR)/tft
 PT_DIR = $(UTILS_DIR)/protothreads
+
+INCLUDES = -I$(UTILS_DIR) -I$(PT_DIR) -I$(TFT_DIR)
 
 CFLAGS = -g -x c -c -mprocessor=$(PROCESSOR) -no-legacy-libc -D_SUPPRESS_PLIB_WARNING=1 -D_DISABLE_OPENADC10_CONFIGPORT_WARNING
 LFLAGS = -no-legacy-libc -mprocessor=$(PROCESSOR)
@@ -29,7 +29,7 @@ LOADFLAGS = -TP$(LOADTOOL) -P$(PROCESSOR) -OL -M
 
 .PHONY: all setup load clean
 
-all: setup $(OBJDIR)/$(TARGET).hex load
+all: setup $(OBJDIR)/$(TARGET).hex load clean-output
 
 setup:
 	mkdir -p $(OBJDIR)
@@ -48,5 +48,9 @@ $(OBJDIR)/tft.o: $(TFT_DIR)/tft_unity.c
 
 load: $(OBJDIR)/$(TARGET).hex
 	$(LOADER) $(LOADFLAGS) -F$<
+
+clean-output:
+	rm *.xml && rm log.*
+
 clean:
 	rm -rf $(OBJDIR)/*

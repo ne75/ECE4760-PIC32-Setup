@@ -18,7 +18,10 @@ for arg in "$@"; do
 	fi
 done
 
-## Edit this path to match your system 
-cd /Applications/microchip/mplabx/v4.00/mplab_ipe.app/Contents/Java
-java -jar ipecmd.jar $args
+if [ ! -f ~/ipec-deps/ipecmd.jar ]; then
+    echo "Could not find ~/ipec-deps/ipecmd.jar: please download https://cornell.box.com/s/8aqitoj0c5vtj689i8u1i5aqp8c3wa6m and unzip in the home directory"
+    exit 1
+fi
+
+java -jar ~/ipec-deps/ipecmd.jar $args
 
