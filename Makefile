@@ -5,8 +5,8 @@
 # September 2017
 #
 
-XC32 = /Applications/microchip/xc32/v1.44/bin
-LOADER = ./ipecmd.sh
+# put a config.mk file in same directory as makefile
+include config.mk
 
 CC = $(XC32)/xc32-gcc
 BIN2HEX = $(XC32)/xc32-bin2hex
@@ -17,7 +17,6 @@ TARGET = capacitance_meter
 PROCESSOR = 32MX250F128B
 LOADTOOL = PKOB
 
-UTILS_DIR = ../utils
 TFT_DIR = $(UTILS_DIR)/tft
 PT_DIR = $(UTILS_DIR)/protothreads
 

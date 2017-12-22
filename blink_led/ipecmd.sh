@@ -1,1 +1,0 @@
-../ipecmd.sh
